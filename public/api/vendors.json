@@ -1,0 +1,53 @@
+[
+ {
+ "id": "krusty-krab",
+ "name": "Krusty Krab",
+ "location": "Mahallah Ali, Ground Floor",
+ "openHours": "10:00 am - 10:00 pm",
+ "isOpen": true,
+ "menu": [
+ { "id": "krusty-1", "name": "Krabby Patty", "description": "Burger with a secret formula", "price": 6, "category": "Burgers", "available": true },
+ { "id": "krusty-2", "name": "Kelp Shake", "description": "A refreshing drink made with kelp", "price": 2.5, "category": "Drinks", "available": true },
+ { "id": "krusty-3", "name": "Kelp Salad", "description": "A refreshing salad made with kelp", "price": 4, "category": "Sides", "available": false },
+ { "id": "krusty-4", "name": "Coral Bits", "description": "Deep-fried coral bits", "price": 3, "category": "Sides", "available": true },
+ { "id": "krusty-5", "name": "Seafoam Soda", "description": "A fizzy soda made with seafoam", "price": 2, "category": "Drinks", "available": true }, 
+ { "id": "krusty-6", "name": "Salty Sea dog", "description": "A dog-shaped snack with a salty taste", "price": 5, "category": "Sides", "available": false },
+ { "id": "krusty-7", "name": "Kelp Rings", "description": "Crispy rings made with kelp", "price": 4, "category": "Sides", "available": true },
+ { "id": "krusty-8", "name": "Jellyfish Jelly Sandwich", "description": "A sandwich made with jellyfish jelly", "price": 4, "category": "Sandwiches", "available": true }
+ ]
+ },
+ {
+ "id": "kafe-aminah",
+ "name": "Kafe Mahallah Aminah",
+ "location": "Mahallah Aminah, Ground Floor",
+ "openHours": "8:00 am - 9:00 pm",
+ "isOpen": true,
+ "menu": [
+ { "id": "ami-1", "name": "Nasi Ayam Penyet", "description": "Smashed fried chicken with sambal and rice", "price": 9, "category": "Rice", "available": true },
+ { "id": "ami-2", "name": "Air Bandung", "description": "Rose syrup with milk", "price": 3, "category": "Drinks", "available": true },
+ { "id": "ami-3", "name": "Mee Goreng Mamak", "description": "Spicy fried noodles with vegetables and egg", "price": 7, "category": "Noodles", "available": true },
+ { "id": "ami-4", "name": "Roti Canai", "description": "Flaky flatbread served with curry sauce", "price": 2, "category": "Bread", "available": true },
+ { "id": "ami-5", "name": "Teh Tarik", "description": "Pulled tea with milk", "price": 2.5, "category": "Drinks", "available": true },
+ { "id": "ami-6", "name": "Nasi Lemak", "description": "Coconut milk rice with sambal, anchovies, and egg", "price": 8, "category": "Rice", "available": true },
+ { "id": "ami-7", "name": "Cendol", "description": "A sweet dessert with coconut milk, palm sugar, and green jelly noodles", "price": 4, "category": "Desserts", "available": true },
+ { "id": "ami-8", "name": "Roti John", "description": "A sandwich made with a baguette, egg, and minced meat", "price": 5, "category": "Sandwiches", "available": true }
+ ]
+ },
+ {
+    "id": "nasi-arab-al-madinah",
+    "name": "Restoran Nasi Arab Al-Madinah",
+    "location": "Mahallah Bilal, Ground Floor",
+    "openHours": "11:00 am - 10:00 pm",
+    "isOpen": true,
+    "menu": [
+      { "id": "arab-1", "name": "Nasi Mandy Ayam", "description": "Fragrant basmati rice served with tender roasted chicken and tomato salsa", "price": 14.00, "category": "Rice", "available": true },
+      { "id": "arab-2", "name": "Nasi Kabsa Kambing", "description": "Spiced basmati rice with slow-cooked succulent lamb shank", "price": 22.00, "category": "Rice", "available": true },
+      { "id": "arab-3", "name": "Chicken Shawarma", "description": "Grilled marinated chicken skewers wrapped in Arabic bread with garlic sauce", "price": 9.00, "category": "Wraps", "available": true },
+      { "id": "arab-4", "name": "Hummus with Pita Bread", "description": "Smooth chickpea dip blended with tahini, olive oil, and warm pita", "price": 7.00, "category": "Appetizers", "available": true },
+      { "id": "arab-5", "name": "Falafel", "description": "Crispy chickpea balls served with tahini sauce", "price": 3.50, "category": "Sides", "available": true },
+      { "id": "arab-6", "name": "Mango Lassi", "description": "Refreshing yogurt-based sweet mango smoothie", "price": 5.00, "category": "Drinks", "available": true },
+      { "id": "arab-7", "name": "Kunafa", "description": "Crispy shredded phyllo dough layered with sweet cheese and syrup", "price": 8.50, "category": "Desserts", "available": true },
+      { "id": "arab-8", "name": "Baklava", "description": "Flaky pastry filled with chopped nuts and sweetened with honey", "price": 4.00, "category": "Desserts", "available": true }
+    ]
+  }
+]

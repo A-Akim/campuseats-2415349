@@ -13,6 +13,7 @@ function validate(values) {
   if (!values.pickupTime || values.pickupTime < '07:00' || values.pickupTime > '22:00') {
     errors.pickupTime = 'Choose a pickup time between 07:00 and 22:00.'
   }
+    return errors 
 }
 function CheckoutForm({ onPlaceOrder }) {
  const [values, setValues] = useState({ name: '', mahallah: '', pickupTime: '' })

@@ -1,3 +1,5 @@
+import { Link } from 'react-router'
+
 export default function RecentlyViewed({ items, onClear }) {
   if (!items || items.length === 0) return null
 
@@ -12,7 +14,9 @@ export default function RecentlyViewed({ items, onClear }) {
       <ul style={{ paddingLeft: '1.2rem', margin: '0.5rem 0 0' }}>
         {items.map((item) => (
           <li key={item.id}>
-            {item.name} <small style={{ color: '#666' }}>({item.vendorName})</small> - RM {item.price.toFixed(2)}
+            <Link to={`/vendor/${item.vendorId}`}>{item.name}</Link>
+            {' '}
+            <small style={{ color: '#666' }}>({item.vendorName})</small> - RM {item.price.toFixed(2)}
           </li>
         ))}
       </ul>

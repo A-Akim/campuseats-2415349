@@ -40,6 +40,21 @@ None
 - One Thing the AI Got Wrong:
   - The AI originally told me to put setLoading(true) directly inside the useEffect function. This caused React to throw a warning about infinite re-renders, so I had to remove it from there.
 
+## Week 4
+- Tool(s):
+  Claude, Gemini
+- What I asked for:
+  - How to set up multi-page navigation using React Router with a shared layout and dynamic vendor routes.
+  - How to create custom hooks for localStorage, vendor data fetching, and cart context.
+  - How to persist cart, orders, and recently viewed items across page reloads.
+  - How to debug router crashes and cart display errors.
+ 
+- What I kept, changed or rejected, and why:
+  - The custom hooks, context provider setup, and route structure. existing nested cart item format in CartProvider instead of flat objects so components did not break. Added the missing return statement in checkout validation.
+    
+- One thing the AI got wrong and how I fixed it:
+  - The AI generated CartProvider with a flat data structure instead of my nested item format, causing the cart page to crash when reading prices. Fixed it by updating CartProvider to match item structure and cleared localStorage to wipe incompatible cached data.
+
 ---
 
 Own Notes
@@ -66,4 +81,32 @@ Steps:
   - Built a separate 'RecentlyViewed.jsx' component to display the list dynamically and hide itself when empty.
 - Rule to remember: Use '.filter()' to drop duplicates, the spread operator (...) to put new items first, and '.slice()' to enforce a maximum length for history logs.
 
-  
+ week 4:
+Part 1: How the Main Features Work
+- React Router: Splits the app into real URL pages (/ , /cart, /orders, /vendor/:id).
+  - BrowserRouter: Manages navigation history.
+  - Routes and Route: Maps URLs to page components.
+  - Layout and Outlet: Keeps Header and Footer on screen while swapping page content inside Outlet.
+  - useParams: Reads dynamic URL values such as vendor IDs.
+  - useNavigate: Changes pages programmatically such as redirecting to /orders after checkout.
+- Custom Hooks: Moves heavy logic out of UI files into reusable helpers.
+  - useLocalStorage: Syncs state with browser storage so data survives page refresh.
+  - useVendors: Handles API fetching, loading states, and error handling.
+  - useCart: Safely accesses cart data from any component.
+- Context API (CartProvider): Eliminates prop drilling by letting components read and update cart data directly instead of passing props through parent components.
+
+Part 2: Problems and Fixes
+Problem 1: Blank page (basename is null)
+  - Cause: Using Link outside of BrowserRouter when NotFoundPage accidentally replaced App.jsx.
+  - Fix: Restored BrowserRouter around the route tree in App.jsx.
+Problem 2: Cart crash (cannot read price of undefined)
+  - Cause: The new provider saved items in a flat format, while existing components expected nested item and qty objects. Cached bad data in browser storage also kept triggering the crash.
+  - Fix: Updated CartProvider to use nested item and qty structure, then cleared old data with localStorage.clear().
+Problem 3: React 19 warning (setState inside effect)
+  - Cause: Calling setLoading(true) directly inside the useEffect body caused unnecessary cascading renders.
+  - Fix: Set initial state to loading true by default, and only reset it inside the manual reload function.
+Problem 4: Checkout form did not submit
+  - Cause: The validate function forgot to return errors, producing undefined.
+  - Fix: Added return errors at the end of the validation function.
+Problem 5: Recently Viewed upgrade (Digit 9)
+  - Upgrade: Replaced basic useState with useLocalStorage so history persists after refresh, and converted item names into clickable Link tags pointing to the vendor page.

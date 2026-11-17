@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import { useVendors } from '../hooks/useVendors'
+import { useVendors } from '../hooks/useVendors.js'
 import { useRecentlyViewed } from '../hooks/useRecentlyViewed'
 import { Loading, ErrorMessage } from '../components/Status.jsx'
 import RecentlyViewed from '../components/RecentlyViewed.jsx'

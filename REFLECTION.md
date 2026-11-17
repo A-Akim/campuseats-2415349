@@ -30,3 +30,10 @@ Path: recent/{uid}
 Fields: items (array of objects with id, name, price, vendorId, vendorName)
 Code line:
 return onSnapshot(doc(db, 'recent', uid), (snap) => onData(snap.exists() ? (snap.data().items ?? []) : []))
+
+
+Bug :
+"Add to cart" button did not work 
+What happened: Clicking the "Add to cart" button on a menu item did nothing and caused an error (onAdd is not a function).
+The cause: In VendorPage.jsx, <MenuList items={items} /> was rendered without passing the onAdd prop. Because onAdd was undefined, clicking the button inside MenuItemCard.jsx failed to trigger any action.
+The fix: Imported useCart in VendorPage.jsx, extracted addToCart, and passed it down to the component: <MenuList items={items} onAdd={handleAdd} />.

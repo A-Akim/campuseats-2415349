@@ -68,3 +68,15 @@ None
     
 - One thing the AI got wrong and how I fixed it:
   None
+
+## Week 6
+Tool(s): Gemini
+What I asked for:
+How to fix the "Add to cart" button not working on VendorPage.
+How to move the Digit 9 personal feature (Recently Viewed) from localStorage to Firestore using onSnapshot.
+How to resolve a React cascading render error caused by calling setState inside useEffect.
+What I kept, changed or rejected, and why:
+None
+One thing the AI got wrong and how I fixed it:
+The AI initially suggested calling setRecentlyViewed([]) directly inside the synchronous body of useEffect, which triggered a React cascading renders error. Fixed it by removing setState from the effect body and deriving the value conditionally instead.
+  

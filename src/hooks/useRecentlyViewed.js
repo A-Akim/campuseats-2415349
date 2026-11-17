@@ -1,17 +1,52 @@
-import { useLocalStorage } from './useLocalStorage'
+import { useEffect, useState } from 'react'
+import { useAuth } from './useAuth.js'
+import { subscribeToRecentlyViewed, saveRecentlyViewed } from '../services/recent.js'
 
 export function useRecentlyViewed() {
-  const [recentlyViewed, setRecentlyViewed] = useLocalStorage('campuseats-recent', [])
+  const { user } = useAuth()
+  const [recentlyViewed, setRecentlyViewed] = useState([])
 
-  function addRecentItem(item, vendorId, vendorName) {
-    setRecentlyViewed((prev) => {
-      const filtered = prev.filter((i) => i.id !== item.id)
-      return [{ ...item, vendorId, vendorName }, ...filtered].slice(0, 5)
-    })
+  useEffect(() => {
+    if (!user) 
+      return
+
+    const unsubscribe = subscribeToRecentlyViewed(
+      user.uid,
+      (items) => setRecentlyViewed(items),
+      (err) => console.error('Recently viewed listener error:', err)
+    )
+
+    return unsubscribe 
+  }, [user])
+
+  async function addRecentItem(item, vendorId, vendorName) {
+    if (!user) return
+
+    const filtered = recentlyViewed.filter((i) => i.id !== item.id)
+    
+    const newItem = {
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      vendorId,
+      vendorName,
+    }
+    const updated = [newItem, ...filtered].slice(0, 5)
+
+    try {
+      await saveRecentlyViewed(user.uid, updated)
+    } catch (err) {
+      console.error('Failed to save recently viewed:', err)
+    }
   }
 
-  function clearRecent() {
-    setRecentlyViewed([])
+  async function clearRecent() {
+    if (!user) return
+    try {
+      await saveRecentlyViewed(user.uid, [])
+    } catch (err) {
+      console.error('Failed to clear recently viewed:', err)
+    }
   }
 
   return { recentlyViewed, addRecentItem, clearRecent }

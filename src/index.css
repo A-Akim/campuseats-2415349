@@ -169,3 +169,16 @@ start; }
 .form input, .form select { padding: 0.5rem; border: 1px solid #c5cbd3; border-radius: 8px; font: inherit; }
 .field-error { color: #b3261e; font-size: 0.85rem; margin: 0; }
 .error { border-left: 4px solid #b3261e; }
+
+/* add to src/index.css */
+.status-steps { display: flex; gap: 0.4rem; list-style: none; padding: 0; flex-wrap:
+wrap; }
+.status-steps li { padding: 0.15rem 0.6rem; border-radius: 999px; background:
+#eef0f3; font-size: 0.8rem; }
+.status-steps li.done { background: var(--green); color: #fff; }
+
+/* add to src/index.css */
+.order-actions { display: flex; flex-wrap: wrap; gap: 0.5rem;
+ align-items: center; margin-top: 0.6rem; }
+.order-actions input { width: auto; }
+.btn-small { padding: 0.3rem 0.8rem; font-size: 0.85rem; }

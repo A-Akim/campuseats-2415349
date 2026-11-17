@@ -10,7 +10,7 @@ import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import ProtectedRoute from './components/ProtectedRoute'
 import { AuthProvider } from './context/AuthProvider'
-
+import SeedPage from './pages/SeedPage.jsx'
 import './index.css'
 
 export default function App() {
@@ -24,6 +24,8 @@ export default function App() {
               <Route path="vendor/:id" element={<VendorPage />} />
               <Route path="login" element={<LoginPage />} />
               <Route path="register" element={<RegisterPage />} />
+              {import.meta.env.DEV && <Route path="seed" element={<SeedPage />} />}
+
               {/* Everything inside ProtectedRoute needs a signed-in user */}
               <Route element={<ProtectedRoute />}>
                 <Route path="cart" element={<CartPage />} />

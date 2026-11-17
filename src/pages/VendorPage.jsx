@@ -1,30 +1,22 @@
-import { useParams, Link } from 'react-router'
-import { useVendors } from '../hooks/useVendors'
-import { useCart } from '../hooks/useCart'
-import { useRecentlyViewed } from '../hooks/useRecentlyViewed'
-import { Loading, ErrorMessage } from '../components/Status.jsx'
+import { Link, useParams } from 'react-router'
+import { useVendor } from '../hooks/useVendor.js'
+import { useCart } from '../hooks/useCart.js'
+import { useRecentlyViewed } from '../hooks/useRecentlyViewed.js'
 import MenuList from '../components/MenuList.jsx'
+import { Loading, ErrorMessage } from '../components/Status.jsx'
 
-export default function VendorPage() {
+function VendorPage() {
   const { id } = useParams()
-  const { vendors, loading, error, reload } = useVendors()
+  const { vendor, menu, loading, error } = useVendor(id)
   const { addToCart } = useCart()
   const { addRecentItem } = useRecentlyViewed()
 
   if (loading) return <Loading />
-  if (error) return <ErrorMessage message={error} onRetry={reload} />
+  if (error) return <ErrorMessage message={error} onRetry={() => window.location.reload()} />
+  if (!vendor) return <p>Vendor not found. <Link to="/">Back to vendors</Link></p>
 
-  const vendor = vendors.find((v) => String(v.id) === String(id))
-
-  if (!vendor) {
-    return (
-      <div className="card error">
-        <h2>Vendor not found</h2>
-        <p>No vendor with ID: <code>{id}</code></p>
-        <Link to="/">← Back to vendors</Link>
-      </div>
-    )
-  }
+  // Each cart line must know its vendor, so orders can be split per vendor.
+  const items = menu.map((item) => ({ ...item, vendorName: vendor.name }))
 
   function handleAdd(item) {
     addToCart(item)
@@ -32,12 +24,13 @@ export default function VendorPage() {
   }
 
   return (
-    <>
+    <section>
       <p><Link to="/">← All vendors</Link></p>
-      <section>
-        <h2 className="section-title">Menu: {vendor.name}</h2>
-        <MenuList items={vendor.menu} onAdd={handleAdd} />
-      </section>
-    </>
+      <h2 className="section-title">{vendor.name}</h2>
+      <p className="muted">{vendor.location} · {vendor.openHours}</p>
+      <MenuList items={items} onAdd={handleAdd} />
+    </section>
   )
 }
+
+export default VendorPage
